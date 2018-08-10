@@ -422,7 +422,7 @@ if($('#googleMap').length){
 
           scrollwheel: false,
 
-          center: new google.maps.LatLng(-37.81618, 144.95692)
+          center: new google.maps.LatLng(-83.250434, 30.863763)
 
       };
 
