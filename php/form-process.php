@@ -1,7 +1,7 @@
 <?php
 
 /*$EmailTo = "info@radiustheme.com";*/
-$EmailTo = "caley.pdgroup@gmail.com";
+$EmailTo = "kelly@crossfitwinnersville.com";
 $Subject = "New Message Received";
 
 $errorMSG = "";
