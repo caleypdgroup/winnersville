@@ -1,19 +1,70 @@
 <?php
-if (isset($_REQUEST['name'],$_REQUEST['email'])) {
-      
-    $name = $_REQUEST['name'];
-    $email = $_REQUEST['email'];
-    $message = $_REQUEST['message'];
-      
-    // Set your email address where you want to receive emails. 
-    $to = 'kelly@crossfitwinnersville.com';
-      
-    $subject = 'Contact Request From Website';
-    $headers = "From: ".$name." <".$email."> \r\n";
-      
-    $send_email = mail($to,$subject,$message,$headers);
-      
-    echo ($send_email) ? 'success' : 'error';
-      
+
+/*$EmailTo = "info@radiustheme.com";*/
+$EmailTo = "caley.pdgroup@gmail.com";
+$Subject = "New Message Received";
+
+$errorMSG = "";
+$name = $email = $phone = $message = null;
+
+// NAME
+if (empty($_POST["name"])) {
+    $errorMSG = "Name is required ";
+} else {
+    $name = $_POST["name"];
 }
-?>
+
+// EMAIL
+if (empty($_POST["email"])) {
+    $errorMSG .= "Email is required ";
+} else {
+    $email = $_POST["email"];
+}
+
+// PHONE
+if (empty($_POST["phone"])) {
+    $errorMSG .= "Phone is required ";
+} else {
+    $phone = $_POST["phone"];
+}
+
+// MESSAGE
+if (empty($_POST["message"])) {
+    $errorMSG .= "Message is required ";
+} else {
+    $message = $_POST["message"];
+}
+
+// prepare email body text
+$Body .= "Name: ";
+$Body .= $name;
+$Body .= "\n";
+
+$Body .= "Email: ";
+$Body .= $email;
+$Body .= "\n";
+
+$Body .= "Phone: ";
+$Body .= $phone;
+$Body .= "\n";
+
+$Body .= "Message: ";
+$Body .= $message;
+$Body .= "\n";
+
+// send email
+if($name && $email && $phone && $message){
+	$success = mail($EmailTo, $Subject, $Body, "From:".$email);
+}else{
+	$success = false;
+}
+
+if ($success && $errorMSG == ""){
+   echo "success";
+}else{
+    if($errorMSG == ""){
+        echo "Something went wrong :(";
+    } else {
+        echo $errorMSG;
+    }
+}
